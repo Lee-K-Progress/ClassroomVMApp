@@ -1,8 +1,8 @@
 # Lee Kusowski
 # Webhooks
-# Dec 05 2025 
+# Feb 04 2026
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AdminUserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from .models import CustomUser
 
@@ -13,7 +13,6 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = CustomUser
         fields = {
-            "username",
             "email",
         }
 
@@ -24,17 +23,5 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = {
-            "username",
-            "email",
-        }
-
-
-class CustomAdminUserCreationForm(AdminUserCreationForm):
-    """Custom User Creation Form"""
-
-    class Meta(AdminUserCreationForm):
-        model = CustomUser
-        fields = {
-            "username",
             "email",
         }

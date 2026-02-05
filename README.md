@@ -1,4 +1,4 @@
-# arachne-2026
+# ClassroomVMApp
 A custom, Django-based, front end for a virtual lab environment.
 
 **Author:**

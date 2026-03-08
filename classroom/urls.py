@@ -1,8 +1,30 @@
-from django.urls import path
-from .views import (
+"""
+Lee Kusowski
+ClassroomVMApp
+3-5-2026
+"""
 
-)
+from django.urls import path
+from django.views.generic import RedirectView
+
+from .views import (
+    ClassroomListView,
+    ClassroomDetailExerciseListView,
+    ExerciseDetailTaskListSubmissionCreateView
+    )
 
 urlpatterns = [
-    path()
+    path(
+        "<int:pk>/",
+        ClassroomDetailExerciseListView.as_view(),
+        name="classroom_detail_exercise_list",
+        ),
+    path(
+        "<str:class_name>/<int:pk>",
+        ExerciseDetailTaskListSubmissionCreateView.as_view(),
+        name="exercise_detail_task_list_submission_create",
+    ),
+    path("classrooms/", ClassroomListView.as_view(),
+         name="classroom_list"),
+    path('', RedirectView.as_view(pattern_name="classroom_list")),
 ]

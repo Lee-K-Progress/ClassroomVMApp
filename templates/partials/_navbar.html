@@ -1,6 +1,6 @@
 {% comment %}
 Lee Kusowski
-Arachne; Front End for Virtual Classrooms
+ClassroomVMApp
 01-20-2025
 {% endcomment %}
 
@@ -15,15 +15,15 @@ Arachne; Front End for Virtual Classrooms
         <li class="nav-item">
           {% comment %} {% url 'twit_list' as twit_list %} {% endcomment %}
           <a
-            class="nav-link {% if request.get_full_path == twit_list %}active{% endif %}"
-            href="{% url 'twit_list' %}"
+            class="nav-link {% if request.get_full_path == classroom_list %}active{% endif %}"
+            href="{% url 'classroom_list' %}"
           >
             Home
           </a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
+        {% comment %} <li class="nav-item">
           {% url 'profile' request.user.pk as profile %}
           <a
             class="nav-link {% if request.get_full_path == profile %}active{% endif %}"
@@ -31,7 +31,7 @@ Arachne; Front End for Virtual Classrooms
           >
             Profile
           </a>
-        </li>
+        </li> {% endcomment %}
         <li class="nav-item">
           {% if request.user.is_authenticated %}
             <form action="{% url 'logout' %}" method="POST" class="d-inline">

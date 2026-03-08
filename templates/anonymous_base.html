@@ -25,20 +25,9 @@ ClassroomVMApp
     </head>
 
     <body>
-        <header>
-            {% include "partials/_navbar.html" %}
-        </header>
-
-        <main>
-            <div class="container">
-                {% block content %}
-                {% endblock content %}
-            </div>
+        <main class="form-signin">
+          {% block content %}{% endblock content %}
         </main>
-
-        {% block scripts %}
-            <script src="{% static 'js/base.js' %}"></script>
-        {% endblock scripts %}
-
     </body>
+    
 </html>

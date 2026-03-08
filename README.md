@@ -38,6 +38,10 @@ CRUD for Users
 4. Set the USERNAME_FIELD -- which defines the unique identifier for the User model -- to email
 5. Specified that all objects for the class come from the CustomUserManager
 
+## Known Issues
+
+Admin:
+Object database cannot be viewed if empty. - Added Test Data
 
 ## Resources Used
 
@@ -47,4 +51,7 @@ https://testdriven.io/blog/django-custom-user-model/
 
 Django Package for Microsoft SSO Authentication:
 https://django-microsoft-auth.readthedocs.io/en/latest/
+
+Django Crispy Forms:
+https://django-crispy-forms.readthedocs.io/en/latest/install.html
 

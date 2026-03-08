@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% comment %}
+Lee Kusowski
+ClassroomVMApp
+3-5-2026
+{% endcomment %}
+
+{% block title %}Classroom List{% endblock title %}
+
+{% block content %}
+    <h1>Class List</h1>
+    <div class='row'>
+        <div class='col-12'>
+{% for classroom in classroom_list %}
+            <div>
+                <h5>
+                    <a href="{% url "classroom_detail_exercise_list" classroom.pk %}"></a>{{ classroom.class_name }}
+                </h5>
+                <h6>
+                    {{ classroom.description }}
+                </h6>
+            </div>
+{% endfor %}
+        </div>
+    </div>
+{% endblock content %}

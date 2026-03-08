@@ -1,6 +1,8 @@
-# Lee Kusowski
-# Webhooks
-# Feb 04 2026
+"""
+Lee Kusowski
+ClassroomVMApp
+Feb 04 2026
+"""
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -11,7 +13,7 @@ from .managers import CustomUserManager
 
 class CustomUser(AbstractUser):
     '''
-    Custom User for {my_project} Project
+    Custom User for ClassroomVMApp Project
 
     Users need:
         Email
@@ -33,4 +35,3 @@ class CustomUser(AbstractUser):
     def __str__(self):
         """CustomUser String Method"""
         return self.email
-    

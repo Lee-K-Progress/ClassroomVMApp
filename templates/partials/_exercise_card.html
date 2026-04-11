@@ -7,8 +7,7 @@ ClassroomVMApp
 
 <div class="card-header d-flex flex-wrap justify-content-center py-3">
   <h5 class="card-text d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-    <a href="{% url "exercise_detail_task_list_submission_create" exercise.pk %}">{{ exercise.exercise_name }}
-    </a>
+    {{ exercise.exercise_name }}
   </h5>
   <h5>
     Due Date: {{ exercise.due_date }}
@@ -20,13 +19,14 @@ ClassroomVMApp
     Objective:
   </h6>
   <p class="card-text">{{ exercise.description }}</p>
-  <a href="#" class="btn btn-primary">Go to Lab</a>
+  <a href="{% url "exercise_detail_task_list_submission_create" exercise.pk %}" class="btn btn-primary">Go to Lab</a>
 </div>
 
-<div class="card-footer text-body-secondary">
-  Footer
-</div>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <div class="col-md-4 ms-4 d-flex align-content-center">
+    {{ classroom.earned_points }} / {{ classroom.max_points }}
+  </div>
+    {{ classroom.score }}%
+</footer>
 
-<h6>
-    {% comment %} {{ classroom.score }} / {{ classroom.max_points }} {% endcomment %}
-</h6>
+<br>

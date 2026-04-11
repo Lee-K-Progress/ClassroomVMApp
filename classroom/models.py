@@ -20,6 +20,9 @@ class Classroom(models.Model):
     class_name = models.CharField(max_length=50)
     crn = models.IntegerField(blank=True)
     description = models.TextField(blank=True)
+    score = models.DecimalField(max_digits=5, decimal_places=2)
+    max_points = models.IntegerField()
+    earned_points = models.IntegerField()
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now = True)
 
@@ -60,7 +63,7 @@ class Task(models.Model):
     )
     task_name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    total_points = models.IntegerField()
+    max_points = models.IntegerField()
     flag = models.TextField()
     created = models.DateTimeField()
     updated = models.DateTimeField(auto_now = True)

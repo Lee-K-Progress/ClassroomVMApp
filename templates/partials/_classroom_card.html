@@ -1,0 +1,23 @@
+{% comment %}
+Lee Kusowski
+ClassroomVMApp
+3-21-2026
+{% endcomment %}
+
+
+<div class="card-header">
+    <h5>
+        <a href="{% url "classroom_detail_exercise_list" classroom.pk classroom.crn %}">
+          {{ classroom.class_name }}
+        </a>
+    </h5>
+</div>
+<div class="card-body">
+  <p class="card-text">{{ classroom.instructor }} - {{ classroom.crn }}</p>
+  <p class="card-text">{{ classroom.description }}</p>
+  <a href="#" class="btn btn-primary">Go somewhere</a>
+</div>
+<div class="card-footer text-body-secondary">
+  Footer
+  {% comment %} {{ classroom.score }} / {{ classroom.max_points }} {% endcomment %}
+</div>

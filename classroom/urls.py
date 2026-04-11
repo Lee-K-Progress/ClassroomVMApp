@@ -15,12 +15,12 @@ from .views import (
 
 urlpatterns = [
     path(
-        "<int:pk>/",
+        "<int:pk>/<int:crn>/",
         ClassroomDetailExerciseListView.as_view(),
         name="classroom_detail_exercise_list",
         ),
     path(
-        "<str:class_name>/<int:pk>",
+        "<int:pk>/attempt",
         ExerciseDetailTaskListSubmissionCreateView.as_view(),
         name="exercise_detail_task_list_submission_create",
     ),

@@ -1,0 +1,32 @@
+{% comment %}
+Lee Kusowski
+ClassroomVMApp
+4-06-2026
+{% endcomment %}
+
+
+<div class="card-header d-flex flex-wrap justify-content-center py-3">
+  <h5 class="card-text d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+    <a href="{% url "exercise_detail_task_list_submission_create" exercise.pk %}">{{ exercise.exercise_name }}
+    </a>
+  </h5>
+  <h5>
+    Due Date: {{ exercise.due_date }}
+  </h5>
+</div>
+
+<div class="card-body">
+  <h6>
+    Objective:
+  </h6>
+  <p class="card-text">{{ exercise.description }}</p>
+  <a href="#" class="btn btn-primary">Go to Lab</a>
+</div>
+
+<div class="card-footer text-body-secondary">
+  Footer
+</div>
+
+<h6>
+    {% comment %} {{ classroom.score }} / {{ classroom.max_points }} {% endcomment %}
+</h6>

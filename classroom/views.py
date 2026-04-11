@@ -65,7 +65,7 @@ class ClassroomCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 # TODO: User should be Admin
 
 
-class ClassroomDetailExerciseListView(LoginRequiredMixin, View):
+class ClassroomDetailExerciseListView(LoginRequiredMixin, DetailView):
     '''Classroom Detail / Exercise List View'''
 
     model = Classroom
@@ -127,7 +127,7 @@ class ExerciseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
 
-class ExerciseDetailTaskListSubmissionCreateView(View):
+class ExerciseDetailTaskListSubmissionCreateView(LoginRequiredMixin, DetailView):
     '''
     Exercise Detail / Task List / Submission Create View
     List of Tasks through Submission Subclassing
@@ -135,7 +135,7 @@ class ExerciseDetailTaskListSubmissionCreateView(View):
     '''
 
     model = Exercise
-    template_name = "exercise_detail_task_list.html"
+    template_name = "exercise_detail_task_list_submission_create.html"
 
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

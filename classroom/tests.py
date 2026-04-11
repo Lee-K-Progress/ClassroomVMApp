@@ -25,7 +25,7 @@ class ClassroomTests(TestCase):
         cls.classroom = Classroom.objects.create( # PYLINT FALSE POSITIVE?
             instructor = cls.instructor,
             class_name = "Test Class",
-            crn = "99999999",
+            crn = "129999999999",
             description = "Test Classroom Description",
         )
 
@@ -41,7 +41,7 @@ class ClassroomTests(TestCase):
         """Test Classroom Model"""
         # Fields
         self.assertEqual(self.classroom.class_name, "Test Class")
-        self.assertEqual(self.classroom.crn, "99999999")
+        self.assertEqual(self.classroom.crn, "129999999999")
         self.assertEqual(self.classroom.description, "Test Classroom Description")
         # Methods
         self.assertEqual(str(self.classroom), "Test Class")
@@ -64,9 +64,30 @@ class ClassroomTests(TestCase):
 
     def test_url_exists_at_correct_location_classroomlistview(self):
         """Test url exists at correct location ClassroomListView"""
-        # self.client.force_login(self.instructor)
         response = self.client.get("/classrooms/")
         self.assertEqual(response.status_code, 200)
-    
-    ## View Tests ##
 
+    ## View Tests ##
+    def test_classroom_list_view(self):
+        """Test Classroom ListView"""
+        self.client.force_login(self.instructor)
+        response = self.client.get(reverse("classroom_list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.instructor.email)
+        self.assertContains(response, "Test Class")
+        self.assertContains(response, "instructor@fakeemail.com")
+        self.assertContains(response, "129999999999")
+        self.assertContains(response, "* / 30")
+
+    def test_classroom_detail_exercise_list_view(self):
+        """Test Classroom Detail / Exercise List View"""
+        self.client.force_login(self.instructor)
+        response = self.client.get(reverse("classroom_detail_exercise_list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Test Classroom")
+        self.assertContains(response, self.instructor.email)
+        self.assertContains(response, "129999999999")
+        self.assertContains(response, "Test Exercise")
+        self.assertContains(response, "Test Exercise Description")
+        self.assertContains(response, "Due Date: ")
+        self.assertContains(response, "* %")

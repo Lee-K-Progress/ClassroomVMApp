@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% comment %}
+Lee Kusowski
+ClassroomVMApp
+4-06-2026
+{% endcomment %}
+
+{% block title %}{{ classroom.class_name }} - Exercise List{% endblock title %}
+
+{% comment %} {% block breadcrumbs %}
+<li class="breadcrumb-item">
+  <a href="{% url 'classroom_detail_exercise_list' classroom.pk classroom.crn %}">
+    {{ classroom.class_name }}
+  </a>
+</li>
+{% endblock breadcrumbs %} {% endcomment %}
+
+{% block content %}
+<div class="container">
+    <div class="bg-secondary">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1>{{ classroom.class_name }}</h1>
+            <h5>{{ classroom.instructor }} - {{ classroom.crn }}</h5>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    {% comment %} <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button> {% endcomment %}
+                </div>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='d-flex flex-column-reverse'>
+            {% for exercise in object.exercises.all %}
+                <div class="exercise-card">
+                    {% include "partials/_exercise_card.html" %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

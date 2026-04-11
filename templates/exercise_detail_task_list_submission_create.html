@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% comment %}
+Lee Kusowski
+ClassroomVMApp
+4-09-2026
+{% endcomment %}
+
+{% block title %}{{ classroom.class_name }} - Task List{% endblock title %}
+
+{% comment %} {% block breadcrumbs %}
+<li class="breadcrumb-item">
+  <a href="{% url 'classroom_detail_task_list' classroom.pk classroom.crn %}">
+    {{ classroom.class_name }}
+  </a>
+</li>
+{% endblock breadcrumbs %} {% endcomment %}
+
+{% block content %}
+
+{% include "partials/_task_column.html" %}
+
+{% endblock content %}

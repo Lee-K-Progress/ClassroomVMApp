@@ -6,22 +6,24 @@ ClassroomVMApp
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    {% comment %} <a class="navbar-brand abs" href="{% url 'twit_list' %}">Tweeter</a> {% endcomment %}
+    <a class="navbar-brand abs" href="{% url 'classroom_list' %}">Classrooms</a>
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="collapseNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          {% comment %} {% url 'twit_list' as twit_list %} {% endcomment %}
-          <a
-            class="nav-link {% if request.get_full_path == classroom_list %}active{% endif %}"
-            href="{% url 'classroom_list' %}"
-          >
+
+      <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item">
+          <a href="{% url 'classroom_list' %}">
             Home
           </a>
         </li>
-      </ul>
+        {% block breadcrumbs %}
+        {% endblock breadcrumbs %}
+
+      </ol> 
+
       <ul class="navbar-nav ms-auto">
         {% comment %} <li class="nav-item">
           {% url 'profile' request.user.pk as profile %}
@@ -43,6 +45,7 @@ ClassroomVMApp
           {% endif %}
         </li>
       </ul>
+      
     </div>
   </div>
 </nav>

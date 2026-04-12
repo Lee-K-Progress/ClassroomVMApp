@@ -22,7 +22,7 @@ class Classroom(models.Model):
     description = models.TextField(blank=True)
     score = models.DecimalField(max_digits=5, decimal_places=2)
     max_points = models.IntegerField()
-    earned_points = models.IntegerField()
+    earned_points = models.IntegerField(blank=True)
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now = True)
 
@@ -44,6 +44,7 @@ class Exercise(models.Model):
     exercise_name = models.CharField(max_length=50)
     vm_url = models.URLField(blank=True)
     description = models.TextField(blank=True)
+    max_points = models.IntegerField()
     due_date = models.DateTimeField(auto_now = True, blank = True)
     created = models.DateTimeField(auto_now_add = True)
     updated = models.DateTimeField(auto_now = True)
@@ -88,6 +89,6 @@ class Submission(Exercise):
         on_delete = models.CASCADE,
     )
 
-    earned_points = models.IntegerField()
+    earned_points = models.IntegerField(blank=True)
     input_flag = models.TextField(blank=True)
     submitted = models.DateTimeField(auto_now_add = True)

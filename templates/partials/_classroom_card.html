@@ -6,18 +6,20 @@ ClassroomVMApp
 
 
 <div class="card-header">
-    <h5>
-        <a href="{% url "classroom_detail_exercise_list" classroom.pk classroom.crn %}">
+    <h5 class="mt-2">
           {{ classroom.class_name }}
-        </a>
     </h5>
 </div>
 <div class="card-body">
   <p class="card-text">{{ classroom.instructor }} - {{ classroom.crn }}</p>
   <p class="card-text">{{ classroom.description }}</p>
-  <a href="#" class="btn btn-primary">Go somewhere</a>
+  <a href="{% url "classroom_detail_exercise_list" classroom.pk classroom.crn %}" class="btn btn-primary">
+    To Classroom
+  </a>
 </div>
-<div class="card-footer text-body-secondary">
-  Footer
-  {% comment %} {{ classroom.score }} / {{ classroom.max_points }} {% endcomment %}
-</div>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <div class="col-md-4 ms-4 d-flex align-content-center">
+    {{ classroom.earned_points }} / {{ classroom.max_points }}
+  </div>
+    {{ classroom.score }}%
+</footer>

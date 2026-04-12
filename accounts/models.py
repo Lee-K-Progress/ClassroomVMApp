@@ -22,9 +22,11 @@ class CustomUser(AbstractUser):
 
     username = None
     email = models.EmailField(lazytxt("email address"), unique=True)
+    first_name = models.CharField()
+    last_name = models.CharField()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
     objects = CustomUserManager()
 
@@ -34,4 +36,4 @@ class CustomUser(AbstractUser):
     
     def __str__(self):
         """CustomUser String Method"""
-        return self.email
+        return self.last_name

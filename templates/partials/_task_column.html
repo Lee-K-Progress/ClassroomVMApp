@@ -11,7 +11,7 @@ ClassroomVMApp
     {% for task in object.tasks.all %}
 
       <button class="accordian-button" type="radio" data-bs-toggle="collapse" data-bs-target="#collapseTask{{ task.pk }}" style="width: 320px;" aria-expanded="false" aria-controls="collapseTaskBar">
-        <div class="card-body ">
+        <div class="card-body">
           <li style="text-align: left;">
             {{ task.task_name }}
           </li>

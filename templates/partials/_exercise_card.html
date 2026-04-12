@@ -19,7 +19,7 @@ ClassroomVMApp
     Objective:
   </h6>
   <p class="card-text">{{ exercise.description }}</p>
-  <a href="{% url "exercise_detail_task_list_submission_create" exercise.pk %}" class="btn btn-primary">Go to Lab</a>
+  <a href="{% url "submission_create_exercise_detail_task_list" exercise.pk %}" class="btn btn-primary">Go to Lab</a>
 </div>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

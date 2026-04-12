@@ -4,8 +4,11 @@ ClassroomVMApp
 4-06-2026
 {% endcomment %}
 
+{% load crispy_forms_tags %}
+
 <div class="row align-items-start">
   <div class="d-flex flex-column align-items-stretch flex-shrink-0 ms-0 p-0" style="width: 320px;">
+
     <ol class="ps-0" style="list-style-position: inside;">
 
     {% for task in object.tasks.all %}
@@ -20,7 +23,14 @@ ClassroomVMApp
     
     {% endfor %}
 
+      <div class="card card-body" style="width: 320px;">
+        <p class="card-text ps-4">
+          SUBMIT
+        </p>
+      </div>
+
     </ol>
+
   </div>
 
   <div class="d-flex flex-column p-0" style="width: 300px;">
@@ -28,18 +38,26 @@ ClassroomVMApp
   {% for task in object.tasks.all %}
     <div class="collapse collapse-horizontal" id="collapseTask{{ task.pk }}">
 
-      <form>
-        <div class="card card-body" style="width: 300px;">
-            <p class="card-text">{{ task.description }}</p>
-            <label for="task{{ task.pk }}Input" class="form-label">
-              Flag:
-            </label>
-            <input type="task{{ task.pk }}" class="form-control" id="task{{ task.pk }}Input">
-        </div>
-      </form>
+      <div class="card card-body" style="width: 300px;">
+        <p class="card-text">
+          {{ task.description }}
+        </p>
+        <form action="" method="post">
+          <label for="task{{ task.pk }}Input" class="form-label">
+            Flag:
+          </label>
+          <input type="task{{ task.pk }}" class="form-control mb-2" id="task{{ task.pk }}Input">
+          <button class="btn btn-success" type="submit" value="Check">
+            Check
+          </button>
+        </form>
+
+      </div>
 
     </div>
   {% endfor %}
+
+    </div>
 
   </div>
 

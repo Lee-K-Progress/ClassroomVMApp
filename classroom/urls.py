@@ -10,7 +10,7 @@ from django.views.generic import RedirectView
 from .views import (
     ClassroomListView,
     ClassroomDetailExerciseListView,
-    ExerciseDetailTaskListSubmissionCreateView
+    SubmissionCreateExerciseDetailTaskListView
     )
 
 urlpatterns = [
@@ -21,8 +21,8 @@ urlpatterns = [
         ),
     path(
         "<int:pk>/attempt",
-        ExerciseDetailTaskListSubmissionCreateView.as_view(),
-        name="exercise_detail_task_list_submission_create",
+        SubmissionCreateExerciseDetailTaskListView.as_view(),
+        name="submission_create_exercise_detail_task_list",
     ),
     path("classrooms/", ClassroomListView.as_view(),
          name="classroom_list"),

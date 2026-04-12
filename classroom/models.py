@@ -77,9 +77,9 @@ class Task(models.Model):
 class Submission(Exercise):
     '''Model for Submission'''
 
-    task = models.ForeignKey(
-        Task,
-        related_name = "submission",
+    exercise = models.ForeignKey(
+        Exercise,
+        related_name = "exercise_submission",
         on_delete = models.CASCADE,
     )
 
@@ -90,5 +90,9 @@ class Submission(Exercise):
     )
 
     earned_points = models.IntegerField(blank=True)
-    input_flag = models.TextField(blank=True)
+    input_flag = models.TextField(blank=True, max_length=50)
     submitted = models.DateTimeField(auto_now_add = True)
+
+
+    class Meta:
+        ordering = ("created",)

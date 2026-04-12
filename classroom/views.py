@@ -11,10 +11,11 @@ from django.views.generic import ListView, CreateView, DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import UpdateView, DeleteView
 
-from .models import Classroom, Exercise, Task
+from .models import Classroom, Exercise, Task, Submission
+from .forms import SubmissionForm
 
 
-class ClassroomListView(ListView):
+class ClassroomListView(LoginRequiredMixin, ListView):
     '''HOMEPAGE View'''
 
     model = Classroom
@@ -127,7 +128,7 @@ class ExerciseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
 
-class ExerciseDetailTaskListSubmissionCreateView(LoginRequiredMixin, DetailView):
+class SubmissionCreateExerciseDetailTaskListView(LoginRequiredMixin, DetailView):
     '''
     Exercise Detail / Task List / Submission Create View
     List of Tasks through Submission Subclassing
@@ -135,51 +136,56 @@ class ExerciseDetailTaskListSubmissionCreateView(LoginRequiredMixin, DetailView)
     '''
 
     model = Exercise
-    template_name = "exercise_detail_task_list_submission_create.html"
+    template_name = "submission_create_exercise_detail_task_list.html"
+    context_object_name = "exercise"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = SubmissionForm()
+        return context
 
 
-class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """Task Update View"""
+# class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#     """Task Update View"""
 
-    model = Task
-    template_name = "task_edit.html"
-    success_url = reverse_lazy("task_list")
-    fields = (
-        "body",
-        "image_url",
-    )
+#     model = Task
+#     template_name = "task_edit.html"
+#     success_url = reverse_lazy("task_list")
+#     fields = (
+#         "body",
+#     )
 
-    def test_func(self):
-        '''User should be Admin'''
-# TODO: User should be Admin
-
-
-class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """Task Delete View"""
-
-    model = Task
-    template_name = "task_delete.html"
-    success_url = reverse_lazy("task_list")
-
-    def test_func(self):
-        '''User should be Admin'''
-# TODO: User should be Admin
+#     def test_func(self):
+#         '''User should be Admin'''
+# # TODO: User should be Admin
 
 
-class TaskCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    """Task Create View"""
+# class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+#     """Task Delete View"""
 
-    model = Task
-    template_name = "task_new.html"
-    success_url = reverse_lazy("task_list")
-    fields = (
-        "body",
-        "image_url",
-    )
+#     model = Task
+#     template_name = "task_delete.html"
+#     success_url = reverse_lazy("task_list")
 
-    def test_func(self):
-        '''User should be Admin'''
-# TODO: User should be Admin
+#     def test_func(self):
+#         '''User should be Admin'''
+# # TODO: User should be Admin
+
+
+# class TaskCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+#     """Task Create View"""
+
+#     model = Task
+#     template_name = "task_new.html"
+#     success_url = reverse_lazy("task_list")
+#     fields = (
+#         "body",
+#         "image_url",
+#     )
+
+#     def test_func(self):
+#         '''User should be Admin'''
+# # TODO: User should be Admin
 
     def form_valid(self, form):
         """
@@ -203,7 +209,7 @@ class ExerciseDetailSubmissionListView(LoginRequiredMixin, View):
 class SubmissionDetailView(LoginRequiredMixin, View):
     '''Submission Detail View'''
 
-    model = Exercise
+    model = Submission
     template_name = "submission_detail.html"
 
 

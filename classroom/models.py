@@ -74,7 +74,7 @@ class Task(models.Model):
 
         return str(self.task_name)
 
-class Submission(Exercise):
+class Submission(models.Model):
     '''Model for Submission'''
 
     exercise = models.ForeignKey(
@@ -91,8 +91,10 @@ class Submission(Exercise):
 
     earned_points = models.IntegerField(blank=True)
     input_flag = models.TextField(blank=True, max_length=50)
-    submitted = models.DateTimeField(auto_now_add = True)
+    attempted_time = models.DateTimeField(auto_now_add = True)
+    submitted_time = models.DateTimeField(auto_now_add = True)
+    is_submitted = models.BooleanField(default=False)
 
 
     class Meta:
-        ordering = ("created",)
+        ordering = ("submitted_time",)

@@ -6,8 +6,8 @@ ClassroomVMApp
 
 {% load crispy_forms_tags %}
 
-<div class="row align-items-start">
-  <div class="d-flex flex-column align-items-stretch flex-shrink-0 ms-0 p-0" style="width: 320px;">
+<div class="row">
+  <div class="d-flex flex-column align-items-stretch flex-shrink-0 ms-0 p-0 outline" style="width: 320px;">
 
     <ol class="ps-0" style="list-style-position: inside;">
 
@@ -23,10 +23,15 @@ ClassroomVMApp
     
     {% endfor %}
 
-      <div class="card card-body" style="width: 320px;">
-        <p class="card-text ps-4">
-          SUBMIT
-        </p>
+      <div class="card card-body fixed-bottom" style="width: 300px;">
+        <div class="btn-toolbar align-items-center justify-content-between">
+          <button class="btn btn-secondary" type="submit" style="width: min-content;">
+            SAVE
+          </button>
+          <button class="btn btn-success" type="submit" style="width: min-content;">
+            SUBMIT
+          </button>
+        </div>
       </div>
 
     </ol>
@@ -42,12 +47,13 @@ ClassroomVMApp
         <p class="card-text">
           {{ task.description }}
         </p>
-        <form action="" method="post">
+        <form action="#" method="post">
+          {% csrf_token %}
           <label for="task{{ task.pk }}Input" class="form-label">
             Flag:
           </label>
-          <input type="task{{ task.pk }}" class="form-control mb-2" id="task{{ task.pk }}Input">
-          <button class="btn btn-success" type="submit" value="Check">
+          <input type="text" class="form-control mb-2" id="task{{ task.pk }}Input">
+          <button class="btn btn-success" type="#" value="Check">
             Check
           </button>
         </form>
